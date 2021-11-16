@@ -16,6 +16,8 @@ class BMICalculator extends StatelessWidget {
         textTheme: const TextTheme(
           bodyText2: TextStyle(
             color: Colors.white,
+            fontWeight: FontWeight.bold,
+            fontSize: 50,
           ),
         ),
       ),
