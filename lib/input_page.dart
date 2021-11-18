@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 
+const bottomContainerHeight = 80.0;
+const bottomContainerColor = Color(0xFFEB1555);
+const activeDarkColor = Color(0xFF1D1E33);
+
 class InputPage extends StatefulWidget {
   @override
   _InputPageState createState() => _InputPageState();
@@ -16,24 +20,29 @@ class _InputPageState extends State<InputPage> {
         Expanded(
             child: Row(children: [
           Expanded(
-            child: ReusableCard(color: const Color(0xFF1D1E33)),
+            child: ReusableCard(color: activeDarkColor),
           ),
           Expanded(
-            child: ReusableCard(color: const Color(0xFF1D1E33)),
+            child: ReusableCard(color: activeDarkColor),
           ),
         ])),
         Expanded(
-          child: ReusableCard(color: const Color(0xFF1D1E33)),
+          child: ReusableCard(color: activeDarkColor),
         ),
         Expanded(
             child: Row(children: [
           Expanded(
-            child: ReusableCard(color: const Color(0xFF1D1E33)),
+            child: ReusableCard(color: activeDarkColor),
           ),
           Expanded(
-            child: ReusableCard(color: const Color(0xFF1D1E33)),
+            child: ReusableCard(color: activeDarkColor),
           ),
         ])),
+        Container(
+          height: bottomContainerHeight,
+          margin: EdgeInsets.only(top: 10),
+          color: bottomContainerColor,
+        )
       ]),
     );
   }
