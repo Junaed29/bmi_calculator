@@ -2,12 +2,8 @@ import 'package:bmi_calculator/reusable_card.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+import 'constants.dart';
 import 'icon_content.dart';
-
-const bottomContainerHeight = 80.0;
-const bottomContainerColor = Color(0xFFEB1555);
-const inActiveCardColor = Color(0xFF111328);
-const activeCardColor = Color(0xFF1D1E33);
 
 class InputPage extends StatefulWidget {
   @override
@@ -29,54 +25,49 @@ class _InputPageState extends State<InputPage> {
         Expanded(
             child: Row(children: [
           Expanded(
-            child: GestureDetector(
-              onTap: () {
+            child: ReusableCard(
+              onPressed: () {
                 setState(() {
                   selectedGender = Gender.male;
                 });
               },
-              child: ReusableCard(
-                color: selectedGender == Gender.male
-                    ? activeCardColor
-                    : inActiveCardColor,
-                cardChild:
-                    IconContent(icon: FontAwesomeIcons.mars, type: "MALE"),
-              ),
+              color: selectedGender == Gender.male
+                  ? kActiveCardColor
+                  : kInActiveCardColor,
+              cardChild: IconContent(icon: FontAwesomeIcons.mars, type: "MALE"),
             ),
           ),
           Expanded(
-            child: GestureDetector(
-              onTap: () {
+            child: ReusableCard(
+              onPressed: () {
                 setState(() {
                   selectedGender = Gender.female;
                 });
               },
-              child: ReusableCard(
-                color: selectedGender == Gender.female
-                    ? activeCardColor
-                    : inActiveCardColor,
-                cardChild:
-                    IconContent(icon: FontAwesomeIcons.venus, type: "FEMALE"),
-              ),
+              color: selectedGender == Gender.female
+                  ? kActiveCardColor
+                  : kInActiveCardColor,
+              cardChild:
+                  IconContent(icon: FontAwesomeIcons.venus, type: "FEMALE"),
             ),
           ),
         ])),
         Expanded(
-          child: ReusableCard(color: activeCardColor),
+          child: ReusableCard(color: kActiveCardColor),
         ),
         Expanded(
             child: Row(children: [
           Expanded(
-            child: ReusableCard(color: activeCardColor),
+            child: ReusableCard(color: kActiveCardColor),
           ),
           Expanded(
-            child: ReusableCard(color: activeCardColor),
+            child: ReusableCard(color: kActiveCardColor),
           ),
         ])),
         Container(
-          height: bottomContainerHeight,
-          margin: EdgeInsets.only(top: 10),
-          color: bottomContainerColor,
+          height: kBottomContainerHeight,
+          margin: const EdgeInsets.only(top: 10),
+          color: kBottomContainerColor,
         )
       ]),
     );
