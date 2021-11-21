@@ -1,9 +1,13 @@
-import 'package:bmi_calculator/reusable_card.dart';
+import 'package:bmi_calculator/calculator_brain.dart';
+import 'package:bmi_calculator/components/reusable_card.dart';
+import 'package:bmi_calculator/screen/results_page.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import 'constants.dart';
-import 'icon_content.dart';
+import '../components/icon_content.dart';
+import '../components/large_text_button.dart';
+import '../components/round_icon_button.dart';
+import '../constants.dart';
 
 class InputPage extends StatefulWidget {
   @override
@@ -22,6 +26,7 @@ class _InputPageState extends State<InputPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         title: const Text('BMI CALCULATOR'),
       ),
       body: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
@@ -196,34 +201,24 @@ class _InputPageState extends State<InputPage> {
                 color: kActiveCardColor),
           ),
         ])),
-        Container(
-          height: kBottomContainerHeight,
-          margin: const EdgeInsets.only(top: 10),
-          color: kBottomContainerColor,
+        LargeTextButton(
+          title: "CALCULATE",
+          onPress: () {
+            CalculatorBrain bmi =
+                CalculatorBrain(height: height, weight: weight);
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => ResultPage(
+                  resultText: bmi.getResult(),
+                  bmiResult: bmi.calculateBMI(),
+                  interpretation: bmi.getInterpretation(),
+                ),
+              ),
+            );
+          },
         )
       ]),
-    );
-  }
-}
-
-class RoundIconButton extends StatelessWidget {
-  final IconData iconData;
-  final VoidCallback onPressed;
-
-  const RoundIconButton({required this.iconData, required this.onPressed});
-
-  @override
-  Widget build(BuildContext context) {
-    return RawMaterialButton(
-      onPressed: onPressed,
-      elevation: 0.0,
-      fillColor: const Color(0xFF4C4F5E),
-      shape: const CircleBorder(),
-      constraints: const BoxConstraints.tightFor(
-        width: 56.0,
-        height: 56.0,
-      ),
-      child: Icon(iconData),
     );
   }
 }
